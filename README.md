@@ -11,7 +11,7 @@
 
 ## Installation
 
-Dillinger requires ``PHP`` v8.3 to run.
+Requires ``PHP`` v8.3 to run.
 
 Install the dependencies and start your server.
 Update database credential on file: src/Database.php
