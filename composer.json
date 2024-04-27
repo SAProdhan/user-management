@@ -18,5 +18,8 @@
             "name": "Sakeef Ameer Prodhan",
             "email": "saprodhan.sa@gmail.com"
         }
-    ]
+    ],
+    "require-dev": {
+        "phpunit/phpunit": "^11.1"
+    }
 }
