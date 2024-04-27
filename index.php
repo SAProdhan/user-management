@@ -11,12 +11,17 @@ Session::start();
 // Initialize router
 $router = new Router();
 
-$router->addRoute('GET', '/users', [UserActions::class, 'index']);
-$router->addRoute('GET', '/users/create', [UserActions::class, 'create']);
-$router->addRoute('GET', '/users/edit', [UserActions::class, 'edit']);
-$router->addRoute('POST', '/users/store', [UserActions::class, 'store']);
-$router->addRoute('POST', '/users/update', [UserActions::class, 'update']);
-$router->addRoute('DELETE', '/users/delete', [UserActions::class, 'delete']);
+
+$router->addRoute('GET', '/', [LoginActions::class, 'index']);
+$router->addRoute('GET', '/login', [LoginActions::class, 'index']);
+$router->addRoute('POST', '/login', [LoginActions::class, 'login']);
+$router->addRoute('GET', '/logout', [LoginActions::class, 'logout']);
+
+$router->addRoute('GET', '/users/create', [UserActions::class, 'create'], [AuthMiddleware::class]);
+$router->addRoute('GET', '/users/edit', [UserActions::class, 'edit'], [AuthMiddleware::class]);
+$router->addRoute('POST', '/users/store', [UserActions::class, 'store'], [AuthMiddleware::class]);
+$router->addRoute('POST', '/users/update', [UserActions::class, 'update'], [AuthMiddleware::class]);
+$router->addRoute('DELETE', '/users/delete', [UserActions::class, 'delete'], [AuthMiddleware::class]);
 
 // Dispatch request
 $method = $_SERVER['REQUEST_METHOD'];
