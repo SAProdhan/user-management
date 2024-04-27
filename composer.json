@@ -1,0 +1,22 @@
+{
+    "name": "sakeef/user-management",
+    "description": "Manage your users and thir role",
+    "type": "project",
+    "license": "mit",
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "App\\Test\\": "tests/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Sakeef Ameer Prodhan",
+            "email": "saprodhan.sa@gmail.com"
+        }
+    ]
+}
