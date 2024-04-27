@@ -6,7 +6,7 @@
             <input type="text" name="username" placeholder="Username" title="Username" class="form-input" required>
             <input type="email" name="email" placeholder="Email" title="Email" class="form-input" required>
             <input type="password" name="password" placeholder="Password" title="Password" class="form-input" required>
-            <select name="role" title="Select Role" class="form-input">
+            <select name="roleid" title="Select Role" class="form-input" required>
                 <option value="">Select Role</option>
                 <option value="1">Admin</option>
                 <option value="2">User</option>

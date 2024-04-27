@@ -79,7 +79,7 @@ class UserActions
             header('Location: /users');
             exit;
         } else {
-            header('Location: /users/creaate');
+            header('Location: /users/create');
             exit;
         }
     }

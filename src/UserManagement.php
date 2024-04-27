@@ -22,12 +22,13 @@ class UserManagement
             $hashedPassword = password_hash($data['password'], PASSWORD_DEFAULT);
 
             // Prepare SQL query to insert a new user
-            $sql = "INSERT INTO {$this->table} (username, email, password) VALUES (:username, :email, :password)";
+            $sql = "INSERT INTO {$this->table} (username, email, password, roleid) VALUES (:username, :email, :password, :roleid)";
             $stmt = $this->pdo->prepare($sql);
             return $stmt->execute([
                 'username' => $data['username'],
                 'email' => $data['email'],
-                'password' => $hashedPassword
+                'password' => $hashedPassword,
+                'roleid' => isset($data['roleid']) ? $data['roleid'] : 2
             ]);
         } catch (PDOException $e) {
             // Check if the error is due to a duplicate username or email
