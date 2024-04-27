@@ -5,6 +5,10 @@ require_once 'vendor/autoload.php';
 use App\Session;
 use App\Controller\Router;
 use App\Action\UserActions;
+use App\Action\LoginActions;
+use App\Action\ProfileActions;
+use App\Middleware\AuthMiddleware;
+use App\Middleware\RoleMiddleware;
 
 Session::start();
 
@@ -21,12 +25,11 @@ $router->addRoute('GET', '/profile', [ProfileActions::class, 'index'], [AuthMidd
 $router->addRoute('POST', '/profile', [ProfileActions::class, 'update'], [AuthMiddleware::class]);
 $router->addRoute('DELETE', '/profile', [ProfileActions::class, 'destroy'], [AuthMiddleware::class]);
 $router->addRoute('GET', '/users', [UserActions::class, 'index'], [AuthMiddleware::class]);
-
-$router->addRoute('GET', '/users/create', [UserActions::class, 'create'], [AuthMiddleware::class]);
-$router->addRoute('GET', '/users/edit', [UserActions::class, 'edit'], [AuthMiddleware::class]);
-$router->addRoute('POST', '/users/store', [UserActions::class, 'store'], [AuthMiddleware::class]);
-$router->addRoute('POST', '/users/update', [UserActions::class, 'update'], [AuthMiddleware::class]);
-$router->addRoute('DELETE', '/users/delete', [UserActions::class, 'delete'], [AuthMiddleware::class]);
+$router->addRoute('GET', '/users/create', [UserActions::class, 'create'], [AuthMiddleware::class,RoleMiddleware::class]);
+$router->addRoute('GET', '/users/edit', [UserActions::class, 'edit'], [AuthMiddleware::class,RoleMiddleware::class]);
+$router->addRoute('POST', '/users/store', [UserActions::class, 'store'], [AuthMiddleware::class,RoleMiddleware::class]);
+$router->addRoute('POST', '/users/update', [UserActions::class, 'update'], [AuthMiddleware::class,RoleMiddleware::class]);
+$router->addRoute('DELETE', '/users/delete', [UserActions::class, 'delete'], [AuthMiddleware::class,RoleMiddleware::class]);
 
 // Dispatch request
 $method = $_SERVER['REQUEST_METHOD'];
